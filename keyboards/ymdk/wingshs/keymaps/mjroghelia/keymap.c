@@ -35,12 +35,20 @@
 	),
 */
 
+// options for user config
+enum config_opts {
+	WINDOWS_MODE = 1,
+	MAC_MODE = 2,
+};
+
 enum custom_keycodes {
     CK_WEB = SAFE_RANGE,
     CK_MAIL,
     CK_TERM,
     CK_EDIT,
 	CK_CHAT,
+	CK_WIN,
+	CK_MAC,
 };
 
 enum layers {
@@ -97,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_NO,  KC_NO,   KC_MUTE, KC_VOLD, KC_VOLU, KC_NO,   KC_NO,   KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_TRNS,
 		KC_NO,  KC_MPRV, KC_MRWD, KC_MFFD, KC_MNXT, KC_MPLY, KC_NO,   KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,
 		KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,  RESET,
-		KC_NO,  KC_NO,   KC_NO,   KC_TRNS, KC_NO,   KC_NO,   TO(WIN), TG(TEST), TO(MAC)
+		KC_NO,  KC_NO,   KC_NO,   KC_TRNS, KC_NO,   KC_NO,   CK_WIN,  TG(TEST), CK_MAC
 	),
 
 	[WIN_NAV] = LAYOUT_all(
@@ -116,14 +124,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_NO,   KC_NO,      KC_NO,          KC_NO,      KC_SPC,     KC_NO,         KC_NO,   KC_NO,   KC_NO
 	),
 	
-	[WIN_APPS] = LAYOUT_all(
-		KC_NO, KC_F1, KC_F2,      KC_F3,      KC_F4, KC_F5,      KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_NO, KC_NO,
-		KC_NO, KC_NO, LGUI(KC_1), LGUI(KC_4), KC_NO, LGUI(KC_2), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,
-		KC_NO, KC_NO, LGUI(KC_5), LGUI(KC_3), KC_NO, KC_NO,      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,  KC_NO,  KC_NO,  KC_NO,
-		KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO, KC_NO,      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,  KC_NO,  KC_NO,
-		KC_NO, KC_NO, KC_NO,      KC_TRNS,    KC_NO, KC_NO,      KC_NO, KC_NO, KC_NO
-	),
-
 	[APPS] = LAYOUT_all(
 		KC_NO, KC_F1, KC_F2,   KC_F3,   KC_F4, KC_F5,   KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_NO, KC_NO,
 		KC_NO, KC_NO, CK_WEB,  CK_MAIL, KC_NO, CK_TERM, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,
@@ -198,11 +198,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case CK_CHAT:
 		return process_app_shortcut(5, record);
 
+	case CK_WIN:
+		if (record->event.pressed) {
+			eeconfig_update_user(WINDOWS_MODE);
+			layer_move(WIN);
+		}
+        return false;
+
+	case CK_MAC:
+		if (record->event.pressed) {
+			eeconfig_update_user(MAC_MODE);
+			layer_move(MAC);
+		}
+        return false;
+
 	default:
 		return true;
     }
 }
 
 void keyboard_post_init_user(void) {
-	layer_move(WIN);
+	uint32_t conf = eeconfig_read_user();
+
+	if (conf == WINDOWS_MODE) {
+		layer_move(WIN);
+	}
+	else if (conf == MAC_MODE) {
+		layer_move(MAC);
+	}
 }
