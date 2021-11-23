@@ -59,7 +59,6 @@ enum layers {
 	FN,
 	WIN_NAV,
 	MAC_NAV,
-	WIN_APPS,
 	APPS,
 	VIM,
 	SHELL,
