@@ -35,6 +35,15 @@
 	),
 */
 
+
+enum custom_keycodes {
+    CK_WEB = SAFE_RANGE,
+    CK_MAIL,
+    CK_TERM,
+    CK_EDIT,
+	CK_CHAT,
+};
+
 enum layers {
 	BASE,
 	WIN,
@@ -148,6 +157,67 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_NO, KC_NO,    KC_NO,   KC_NO,       KC_NO,       KC_NO,    KC_NO, KC_NO, KC_NO
 	)
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case CK_WEB:
+        if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+
+			}
+			else if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LGUI("1"));
+			}
+        }
+        break;
+
+    case CK_TERM:
+        if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+
+			}
+			else if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LGUI("2"));
+			}
+        }
+        break;
+
+    case CK_EDIT:
+        if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+
+			}
+			else if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LGUI("3"));
+			}
+        }
+        break;
+
+    case CK_MAIL:
+        if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+
+			}
+			else if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LGUI("4"));
+			}
+        }
+        break;
+
+    case CK_CHAT:
+        if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+
+			}
+			else if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LGUI("5"));
+			}
+        }
+        break;
+    }
+
+    return true;
+}
 
 void keyboard_post_init_user(void) {
 	layer_move(WIN);
