@@ -35,7 +35,6 @@
 	),
 */
 
-
 enum custom_keycodes {
     CK_WEB = SAFE_RANGE,
     CK_MAIL,
@@ -53,7 +52,7 @@ enum layers {
 	WIN_NAV,
 	MAC_NAV,
 	WIN_APPS,
-	MAC_APPS,
+	APPS,
 	VIM,
 	SHELL,
 	CODE,
@@ -70,19 +69,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 
 	[WIN] = LAYOUT_all(
-		KC_TRNS,     KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		KC_TRNS,     KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		MO(WIN_NAV), KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		KC_TRNS,     KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		KC_TRNS,     KC_TRNS, LCTL_T(KC_SPC), KC_TRNS, LT(WIN_APPS, KC_SPC), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+		KC_TRNS,     KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS,     KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		MO(WIN_NAV), KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS,     KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS,     KC_TRNS, LCTL_T(KC_SPC), KC_TRNS, LT(APPS, KC_SPC), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 	),
 
 	[MAC] = LAYOUT_all(
-		KC_TRNS,     KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		KC_TRNS,     KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		MO(MAC_NAV), KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		KC_TRNS,     KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		KC_TRNS,     KC_TRNS, LGUI_T(KC_SPC), KC_TRNS, LT(MAC_APPS, KC_SPC), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+		KC_TRNS,     KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS,     KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		MO(MAC_NAV), KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS,     KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		KC_TRNS,     KC_TRNS, LGUI_T(KC_SPC), KC_TRNS, LT(APPS, KC_SPC), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 	),
 
 	[TEST] = LAYOUT_all(
@@ -125,12 +124,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_NO, KC_NO, KC_NO,      KC_TRNS,    KC_NO, KC_NO,      KC_NO, KC_NO, KC_NO
 	),
 
-	[MAC_APPS] = LAYOUT_all(
-		KC_NO, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_NO, KC_NO,
-		KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,
-		KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,  KC_NO,  KC_NO,  KC_NO,
-		KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,  KC_NO,  KC_NO,
-		KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
+	[APPS] = LAYOUT_all(
+		KC_NO, KC_F1, KC_F2,   KC_F3,   KC_F4, KC_F5,   KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_NO, KC_NO,
+		KC_NO, KC_NO, CK_WEB,  CK_MAIL, KC_NO, CK_TERM, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,
+		KC_NO, KC_NO, CK_CHAT, CK_EDIT, KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,  KC_NO,  KC_NO,  KC_NO,
+		KC_NO, KC_NO, KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,  KC_NO,  KC_NO,
+		KC_NO, KC_NO, KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO
 	),
 
 	[VIM] = LAYOUT_all(
@@ -158,65 +157,50 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	)
 };
 
+// Select the app in the dock/taskbar by position
+bool process_app_shortcut(int position, keyrecord_t *record) {
+	if (position < 1 || position > 5) {
+		return true;
+	}
+
+	if (record->event.pressed) {
+		if (IS_LAYER_ON(MAC)) {
+			SEND_STRING(SS_LCTL(SS_TAP(X_F3)) "f");
+			for(int i = 0; i < position; i++) {
+				SEND_STRING(SS_TAP(X_RIGHT));
+			}
+			SEND_STRING(SS_TAP(X_ENTER));
+		}
+		else if (IS_LAYER_ON(WIN)) {
+			register_code(KC_LGUI);
+			tap_code(KC_1 + (position - 1));
+			unregister_code(KC_LGUI);
+		}
+	}
+
+	return true;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case CK_WEB:
-        if (record->event.pressed) {
-			if (IS_LAYER_ON(MAC)) {
-
-			}
-			else if (IS_LAYER_ON(WIN)) {
-				SEND_STRING(SS_LGUI("1"));
-			}
-        }
-        break;
+		return process_app_shortcut(1, record);
 
     case CK_TERM:
-        if (record->event.pressed) {
-			if (IS_LAYER_ON(MAC)) {
-
-			}
-			else if (IS_LAYER_ON(WIN)) {
-				SEND_STRING(SS_LGUI("2"));
-			}
-        }
-        break;
+		return process_app_shortcut(2, record);
 
     case CK_EDIT:
-        if (record->event.pressed) {
-			if (IS_LAYER_ON(MAC)) {
-
-			}
-			else if (IS_LAYER_ON(WIN)) {
-				SEND_STRING(SS_LGUI("3"));
-			}
-        }
-        break;
+		return process_app_shortcut(3, record);
 
     case CK_MAIL:
-        if (record->event.pressed) {
-			if (IS_LAYER_ON(MAC)) {
-
-			}
-			else if (IS_LAYER_ON(WIN)) {
-				SEND_STRING(SS_LGUI("4"));
-			}
-        }
-        break;
+		return process_app_shortcut(4, record);
 
     case CK_CHAT:
-        if (record->event.pressed) {
-			if (IS_LAYER_ON(MAC)) {
+		return process_app_shortcut(5, record);
 
-			}
-			else if (IS_LAYER_ON(WIN)) {
-				SEND_STRING(SS_LGUI("5"));
-			}
-        }
-        break;
+	default:
+		return true;
     }
-
-    return true;
 }
 
 void keyboard_post_init_user(void) {
