@@ -55,7 +55,6 @@ enum layers {
 	BASE,
 	WIN,
 	MAC,
-	TEST,
 	FN,
 	ADMIN,
 	WIN_NAV,
