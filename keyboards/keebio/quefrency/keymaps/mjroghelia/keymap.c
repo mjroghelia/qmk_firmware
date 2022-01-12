@@ -49,6 +49,7 @@ enum custom_keycodes {
 	CK_CHAT,
 	CK_WIN,
 	CK_MAC,
+	CK_ALERTS
 };
 
 enum layers {
@@ -121,11 +122,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 	
 	[APPS] = LAYOUT_65(
-		KC_NO, KC_NO, KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-		KC_NO, KC_NO, CK_WEB,  CK_MAIL, KC_NO, CK_TERM, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-		KC_NO, KC_NO, CK_CHAT, CK_EDIT, KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-		KC_NO, KC_NO, KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-		KC_NO, KC_NO, KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
+		KC_NO, KC_NO,     KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+		KC_NO, KC_NO,     CK_WEB,  CK_MAIL, KC_NO, CK_TERM, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+		KC_NO, CK_ALERTS, CK_CHAT, CK_EDIT, KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+		KC_NO, KC_NO,     KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+		KC_NO, KC_NO,     KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
 	)
 };
 
@@ -183,6 +184,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			layer_move(MAC);
 		}
         return false;
+
+	case CK_ALERTS:
+		if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+				SEND_STRING(SS_LSFT(SS_LGUI("o")));
+			}
+			else if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LGUI("a"));
+			}
+		}
+		return false;
 
 	default:
 		return true;
