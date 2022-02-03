@@ -49,7 +49,8 @@ enum custom_keycodes {
 	CK_CHAT,
 	CK_WIN,
 	CK_MAC,
-	CK_ALERTS
+	CK_ALERTS,
+	CK_CAL
 };
 
 enum layers {
@@ -125,14 +126,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_NO, KC_NO,     KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 		KC_NO, KC_NO,     CK_WEB,  CK_MAIL, KC_NO, CK_TERM, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 		KC_NO, CK_ALERTS, CK_CHAT, CK_EDIT, KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-		KC_NO, KC_NO,     KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+		KC_NO, KC_NO,     KC_NO,   CK_CAL,  KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 		KC_NO, KC_NO,     KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
 	)
 };
 
 // Select the app in the dock/taskbar by position
 bool process_app_shortcut(int position, keyrecord_t *record) {
-	if (position < 1 || position > 5) {
+	if (position < 1 || position > 6) {
 		return true;
 	}
 
@@ -165,11 +166,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case CK_EDIT:
 		return process_app_shortcut(3, record);
 
-    case CK_MAIL:
+    case CK_CHAT:
 		return process_app_shortcut(4, record);
 
-    case CK_CHAT:
+    case CK_MAIL:
 		return process_app_shortcut(5, record);
+
+    case CK_CAL:
+		return process_app_shortcut(6, record);
 
 	case CK_WIN:
 		if (record->event.pressed) {
@@ -191,7 +195,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				SEND_STRING(SS_LSFT(SS_LGUI("o")));
 			}
 			else if (IS_LAYER_ON(WIN)) {
-				SEND_STRING(SS_LGUI("a"));
+				SEND_STRING(SS_LGUI("n"));
 			}
 		}
 		return false;
