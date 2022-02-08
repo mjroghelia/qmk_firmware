@@ -131,32 +131,45 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	)
 };
 
+bool in_app_shortcut = false;
+
 // Select the app in the dock/taskbar by position
 bool process_app_shortcut(int position, keyrecord_t *record) {
 	if (position < 1 || position > 6) {
 		return true;
 	}
 
-	if (record->event.pressed) {
-		if (IS_LAYER_ON(MAC)) {
+	if (IS_LAYER_ON(MAC)) {
+		if (record->event.pressed) {
 			SEND_STRING(SS_LCTL(SS_TAP(X_F3)) "f");
 			for(int i = 0; i < position; i++) {
 				SEND_STRING(SS_TAP(X_RIGHT));
 			}
 			SEND_STRING(SS_TAP(X_ENTER));
 		}
-		else if (IS_LAYER_ON(WIN)) {
+	}
+	else if (IS_LAYER_ON(WIN)) {
+		if (record->event.pressed) {
+			in_app_shortcut = true;
 			register_code(KC_LGUI);
 			tap_code_delay(KC_1 + (position - 1), 100);
-			unregister_code(KC_LGUI);
 		}
 	}
 
 	return true;
 }
 
+layer_state_t layer_state_set_user(layer_state_t state) {
+	if (in_app_shortcut) {
+		unregister_code(KC_LGUI);
+		in_app_shortcut = false;
+	}
+  	return state;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+	
     case CK_WEB:
 		return process_app_shortcut(1, record);
 
