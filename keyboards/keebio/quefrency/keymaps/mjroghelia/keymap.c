@@ -147,7 +147,7 @@ bool process_app_shortcut(int position, keyrecord_t *record) {
 		}
 		else if (IS_LAYER_ON(WIN)) {
 			register_code(KC_LGUI);
-			tap_code(KC_1 + (position - 1));
+			tap_code_delay(KC_1 + (position - 1), 100);
 			unregister_code(KC_LGUI);
 		}
 	}
