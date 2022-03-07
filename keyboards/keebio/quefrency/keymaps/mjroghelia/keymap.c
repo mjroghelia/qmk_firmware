@@ -42,15 +42,15 @@ enum config_opts {
 };
 
 enum custom_keycodes {
-	CK_WEB = SAFE_RANGE,
-	CK_MAIL,
-	CK_TERM,
-	CK_EDIT,
-	CK_CHAT,
-	CK_WIN,
+	CK_WIN = SAFE_RANGE,
 	CK_MAC,
-	CK_ALERTS,
-	CK_CAL
+	CK_NOTN,
+	CK_APP1,
+	CK_APP2,
+	CK_APP3,
+	CK_APP4,
+	CK_APP5,
+	CK_APP6
 };
 
 enum layers {
@@ -91,11 +91,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 
 	[FN] = LAYOUT_65(
-		KC_GRV, KC_F1,     KC_F2,   KC_F3,   KC_F4, KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, KC_F12, KC_NO, KC_NO, KC_NO,
-		KC_NO,  KC_NO,     CK_WEB,  CK_MAIL, KC_NO, CK_TERM, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_MPLY, KC_NO,  KC_NO,  KC_NO, KC_NO,
-		KC_NO,  CK_ALERTS, CK_CHAT, CK_EDIT, KC_NO, KC_NO,   KC_MNXT, KC_VOLD, KC_VOLU, KC_MPRV, KC_NO,   KC_NO,  KC_NO,  KC_NO,
-		KC_NO,  KC_NO,     KC_NO,   CK_CAL,  KC_NO, KC_NO,   KC_NO,   KC_MUTE, KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,  KC_NO,
-		KC_NO,  KC_NO,     KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO
+		KC_GRV, KC_F1,   KC_F2,   KC_F3,   KC_F4, KC_F5, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, KC_F12, KC_NO, KC_NO, KC_NO,
+		KC_NO,  KC_NO,   CK_APP1, CK_APP2, CK_APP3, KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_MPLY, KC_NO,  KC_NO,  KC_NO, KC_NO,
+		KC_NO,  CK_NOTN, CK_APP4, CK_APP5, CK_APP6, KC_NO, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPRV, KC_NO,   KC_NO,  KC_NO,  KC_NO,
+		KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO, KC_NO,   KC_MUTE, KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,  KC_NO,
+		KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO
 	),
 
 	[SYM] = LAYOUT_65(
@@ -170,22 +170,22 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 	
-    case CK_WEB:
+    case CK_APP1:
 		return process_app_shortcut(1, record);
 
-    case CK_TERM:
+    case CK_APP2:
 		return process_app_shortcut(2, record);
 
-    case CK_EDIT:
+    case CK_APP3:
 		return process_app_shortcut(3, record);
 
-    case CK_CHAT:
+    case CK_APP4:
 		return process_app_shortcut(4, record);
 
-    case CK_MAIL:
+    case CK_APP5:
 		return process_app_shortcut(5, record);
 
-    case CK_CAL:
+    case CK_APP6:
 		return process_app_shortcut(6, record);
 
 	case CK_WIN:
@@ -202,7 +202,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		}
         return false;
 
-	case CK_ALERTS:
+	case CK_NOTN:
 		if (record->event.pressed) {
 			if (IS_LAYER_ON(MAC)) {
 				SEND_STRING(SS_LSFT(SS_LGUI("o")));
