@@ -90,11 +90,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 
 	[FN] = LAYOUT_65(
-		KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,        KC_F5, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, KC_F12, KC_NO, KC_NO, KC_NO,
-		KC_NO,   CK_APP1, CK_APP2, CK_APP3, LCTL(KC_GRV), KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_MPLY, KC_NO,  KC_NO,  CK_WIN, KC_NO,
-		CK_NOTN, CK_APP4, CK_APP5, CK_APP6, KC_NO,        KC_NO, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPRV, KC_NO,   KC_NO,  KC_NO,  KC_NO,
-		KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO, KC_NO,   KC_MUTE, KC_NO,   KC_NO,   CK_MAC,  KC_NO,  KC_NO,  KC_NO,
-		KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO
+		KC_GRV, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, KC_F12, KC_NO, KC_NO, KC_NO,
+		KC_NO,  KC_NO,   CK_APP1, CK_APP2, CK_APP3, LCTL(KC_GRV), KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_MPLY, KC_NO,  KC_NO,  CK_WIN, KC_NO,
+		KC_NO,  CK_NOTN, CK_APP4, CK_APP5, CK_APP6, KC_NO,        KC_MNXT, KC_VOLD, KC_VOLU, KC_MPRV, KC_NO,   KC_NO,  KC_NO,  KC_NO,
+		KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_MUTE, KC_NO,   KC_NO,   CK_MAC,  KC_NO,  KC_NO,  KC_NO,
+		KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO
 	),
 
 	[SYM] = LAYOUT_65(
