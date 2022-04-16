@@ -4,10 +4,13 @@
 			"path": "users/mjroghelia"
 		},
 		{
-			"path": "keyboards/ymdk/wingshs/keymaps/mjroghelia"
+			"path": "keyboards/ymdk/wingshs"
 		},
 		{
-			"path": "keyboards/keebio/quefrency/keymaps/mjroghelia"
+			"path": "keyboards/keebio/quefrency"
+		},
+		{
+			"path": "keyboards/dz60"
 		}
 	]
 }
