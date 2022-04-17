@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "keyboards/dz60"
+		},
+		{
+			"path": "gen"
 		}
 	]
 }
