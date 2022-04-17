@@ -38,7 +38,106 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-	
+
+	case CK_SOL:
+		if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+				SEND_STRING(SS_LCTL("a"));
+			}
+			else {
+				SEND_STRING(SS_TAP(X_HOME));
+			}
+		}
+		return false;
+
+	case CK_EOL:
+		if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+				SEND_STRING(SS_LCTL("e"));
+			}
+			else {
+				SEND_STRING(SS_TAP(X_END));
+			}
+		}
+		return false;
+
+	case CK_FWORD:
+		if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+				SEND_STRING(SS_LALT(SS_TAP(X_RIGHT)));
+			}
+			else if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LCTL(SS_TAP(X_RIGHT)));
+			}
+		}
+		return false;
+
+	case CK_BWORD:
+		if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+				SEND_STRING(SS_LALT(SS_TAP(X_LEFT)));
+			}
+			else if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LCTL(SS_TAP(X_LEFT)));
+			}
+		}
+		return false;
+
+	case CK_QUIT:
+		if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+				SEND_STRING(SS_LGUI("q"));
+			}
+			else if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LALT(SS_TAP(X_F4)));
+			}
+		}
+		return false;
+
+	case CK_SAVE:
+		if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+				SEND_STRING(SS_LGUI("s"));
+			}
+			else if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LCTL("s"));
+			}
+		}
+		return false;
+
+	case CK_CUT:
+		if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+				SEND_STRING(SS_LGUI("x"));
+			}
+			else if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LCTL("x"));
+			}
+		}
+		return false;
+
+	case CK_COPY:
+		if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+				SEND_STRING(SS_LGUI("c"));
+			}
+			else if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LCTL("c"));
+			}
+		}
+		return false;
+
+	case CK_PASTE:
+		if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+				SEND_STRING(SS_LGUI("v"));
+			}
+			else if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LCTL("v"));
+			}
+		}
+		return false;
+
     case CK_APP1:
 		return process_app_shortcut(1, record);
 

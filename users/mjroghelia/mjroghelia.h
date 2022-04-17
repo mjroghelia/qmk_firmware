@@ -12,6 +12,15 @@ enum config_opts {
 enum custom_keycodes {
 	CK_WIN = SAFE_RANGE,
 	CK_MAC,
+	CK_SOL,
+	CK_EOL,
+	CK_FWORD,
+	CK_BWORD,
+	CK_QUIT,
+	CK_SAVE,
+	CK_CUT,
+	CK_COPY,
+	CK_PASTE,
 	CK_NOTN,
 	CK_APP1,
 	CK_APP2,
@@ -26,9 +35,9 @@ enum layers {
 	WIN,
 	MAC,
 	FN,
-	SYM,
-	WIN_NAV,
-	MAC_NAV
+	ADMIN,
+	APP,
+	SYM
 };
 
 #endif
