@@ -17,7 +17,7 @@ bool process_app_shortcut(int position, keyrecord_t *record) {
 			SEND_STRING(SS_TAP(X_ENTER));
 		}
 	}
-	else if (IS_LAYER_ON(WIN)) {
+	else {
 		if (record->event.pressed) {
 			in_app_shortcut = true;
 			register_code(KC_LGUI);
@@ -66,7 +66,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			if (IS_LAYER_ON(MAC)) {
 				SEND_STRING(SS_LALT(SS_TAP(X_RIGHT)));
 			}
-			else if (IS_LAYER_ON(WIN)) {
+			else {
 				SEND_STRING(SS_LCTL(SS_TAP(X_RIGHT)));
 			}
 		}
@@ -77,7 +77,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			if (IS_LAYER_ON(MAC)) {
 				SEND_STRING(SS_LALT(SS_TAP(X_LEFT)));
 			}
-			else if (IS_LAYER_ON(WIN)) {
+			else {
 				SEND_STRING(SS_LCTL(SS_TAP(X_LEFT)));
 			}
 		}
@@ -88,7 +88,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			if (IS_LAYER_ON(MAC)) {
 				SEND_STRING(SS_LGUI("q"));
 			}
-			else if (IS_LAYER_ON(WIN)) {
+			else {
 				SEND_STRING(SS_LALT(SS_TAP(X_F4)));
 			}
 		}
@@ -99,7 +99,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			if (IS_LAYER_ON(MAC)) {
 				SEND_STRING(SS_LGUI("s"));
 			}
-			else if (IS_LAYER_ON(WIN)) {
+			else {
 				SEND_STRING(SS_LCTL("s"));
 			}
 		}
@@ -110,7 +110,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			if (IS_LAYER_ON(MAC)) {
 				SEND_STRING(SS_LGUI("x"));
 			}
-			else if (IS_LAYER_ON(WIN)) {
+			else {
 				SEND_STRING(SS_LCTL("x"));
 			}
 		}
@@ -121,7 +121,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			if (IS_LAYER_ON(MAC)) {
 				SEND_STRING(SS_LGUI("c"));
 			}
-			else if (IS_LAYER_ON(WIN)) {
+			else {
 				SEND_STRING(SS_LCTL("c"));
 			}
 		}
@@ -132,7 +132,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			if (IS_LAYER_ON(MAC)) {
 				SEND_STRING(SS_LGUI("v"));
 			}
-			else if (IS_LAYER_ON(WIN)) {
+			else {
 				SEND_STRING(SS_LCTL("v"));
 			}
 		}
@@ -175,7 +175,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			if (IS_LAYER_ON(MAC)) {
 				SEND_STRING(SS_LSFT(SS_LGUI("o")));
 			}
-			else if (IS_LAYER_ON(WIN)) {
+			else {
 				SEND_STRING(SS_LGUI("n"));
 			}
 		}
@@ -189,10 +189,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void keyboard_post_init_user(void) {
 	uint32_t conf = eeconfig_read_user();
 
-	if (conf == WINDOWS_MODE) {
-		layer_move(WIN);
-	}
-	else if (conf == MAC_MODE) {
+	if (conf == MAC_MODE) {
 		layer_move(MAC);
 	}
 }
