@@ -31,7 +31,6 @@ enum custom_keycodes {
 };
 
 enum layers {
-	BASE,
 	WIN,
 	MAC,
 	FN,
