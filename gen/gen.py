@@ -1,6 +1,7 @@
 import copy
 import json
 from pathlib import Path
+import sys
 
 def gen_path():
     return Path(__file__).parent
@@ -60,12 +61,54 @@ def render_dz60(layers):
     with open(path, 'w') as f:
         render(f, layers, 'LAYOUT_60_ansi_split_space_rshift')
 
+# Quefrency
+def render_quefrency(layers):
+    layers = copy.deepcopy(layers)
+    for layer in layers:
+        rows = layer['rows']
+        # unused positions
+        rows[0].insert(13, 'KC_NO')
+        rows[4].insert(5, 'KC_NO')
+        rows[4].insert(9, 'KC_NO')
+        # swap the poorly positioned fn :(
+        old = rows[4][3]
+        rows[4][3] = rows[4][4]
+        rows[4][4] = old
+    path = qmk_path() / "keyboards" / "keebio" / "quefrency" / "keymaps" / "mjroghelia" / "keymap.c"
+    with open(path, 'w') as f:
+        render(f, layers, 'LAYOUT_65')
+
+# Wings
+def render_wings(layers):
+    layers = copy.deepcopy(layers)
+    for layer in layers:
+        rows = layer['rows']
+        del rows[3][-1]
+        del rows[4][1]
+        del rows[4][6]
+    path = qmk_path() / "keyboards" / "ymdk" / "wingshs" / "keymaps" / "mjroghelia" / "keymap.c"
+    with open(path, 'w') as f:
+        render(f, layers, 'LAYOUT_all')
 
 # Main
-if __name__ == "__main__":
-
+def main():
     with open(gen_path() / 'keymap.json') as keymap_file:
         keymap = json.load(keymap_file)
         layers = keymap['layers']
+    
+    target = "all"
 
-    render_dz60(layers)
+    if (len(sys.argv) >= 2):
+        target = sys.argv[1]
+
+    if target == "dz60" or target == "all":
+        render_dz60(layers)
+    
+    if target ==  "quefrency" or target == "all":
+        render_quefrency(layers)
+    
+    if target == "wings" or target == "all":
+        render_wings(layers)
+
+if __name__ == '__main__':
+    main()
