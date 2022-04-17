@@ -12,6 +12,8 @@ enum config_opts {
 enum custom_keycodes {
 	CK_WIN = SAFE_RANGE,
 	CK_MAC,
+	CK_CLR,
+	CK_SYM,
 	CK_SOL,
 	CK_EOL,
 	CK_FWORD,

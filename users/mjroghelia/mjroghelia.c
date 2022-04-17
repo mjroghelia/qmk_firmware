@@ -39,6 +39,28 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 
+	case CK_CLR:
+		if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+				layer_move(MAC);
+			}
+			else {
+				layer_clear();
+			}
+		}
+
+		return false;
+
+	case CK_SYM:
+		if (record->event.pressed) {
+			if (IS_LAYER_ON(MAC)) {
+			}
+			else {
+			}
+		}
+
+		return false;
+
 	case CK_SOL:
 		if (record->event.pressed) {
 			if (IS_LAYER_ON(MAC)) {
