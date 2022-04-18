@@ -1,6 +1,9 @@
 {
 	"folders": [
 		{
+			"path": "gen"
+		},
+		{
 			"path": "users/mjroghelia"
 		},
 		{
@@ -11,9 +14,6 @@
 		},
 		{
 			"path": "keyboards/dz60"
-		},
-		{
-			"path": "gen"
 		}
 	]
 }
