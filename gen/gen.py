@@ -47,10 +47,11 @@ def render_dz60(layers):
         for row in rows:
             del row[-1]
         if layer['name'] == 'WIN':
-            rows[3][12] = "KC_DEL"
-            rows[4][7]  = "KC_RALT"
-            rows[4][8]  = "KC_RCTL"
-            rows[4][9] = "MO(FN)"
+            rows[3][12] = "MO(FN)"
+            rows[4][6]  = "KC_LEFT"
+            rows[4][7]  = "KC_DOWN"
+            rows[4][8]  = "KC_UP"
+            rows[4][9] = "KC_RIGHT"
         elif layer['name'] == 'FN':
             rows[3][12] = "KC_NO"
             rows[4][6]  = "KC_MPRV"
