@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import copy
 import json
 from pathlib import Path
@@ -48,7 +50,8 @@ def render_dz60(layers):
         del rows[2][-1]
         del rows[3][-1]
         if layer['name'] == 'WIN':
-            rows[3].insert(0, "MO(FN)")
+            #rows[3].insert(0, "MO(FN)")
+            rows[3].insert(1, "KC_NO")
             rows[3][-1] = "MO(FN)"
             rows[4][-4]  = "KC_LEFT"
             rows[4][-3]  = "KC_DOWN"
