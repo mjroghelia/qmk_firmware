@@ -50,9 +50,11 @@ def render_dz60(layers):
         del rows[2][-1]
         del rows[3][-1]
         if layer['name'] == 'WIN':
-            #rows[3].insert(0, "MO(FN)")
+            rows[0][-1] = "KC_BSPC"
+            rows[0][-2] = "KC_NO"
             rows[3].insert(1, "KC_NO")
-            rows[3][-1] = "MO(FN)"
+            rows[3][-1] = "KC_APP"
+            rows[4][-5]  = "OSL(SYM)"
             rows[4][-4]  = "KC_LEFT"
             rows[4][-3]  = "KC_DOWN"
             rows[4][-2]  = "KC_UP"
