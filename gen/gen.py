@@ -46,29 +46,8 @@ def render_dz60(layers):
     layers = copy.deepcopy(layers)
     for layer in layers:
         rows = layer['rows']
-        del rows[1][-1]
-        del rows[2][-1]
-        del rows[3][-1]
-        if layer['name'] == 'WIN':
-            rows[0][-1] = "KC_BSPC"
-            rows[0][-2] = "KC_NO"
-            rows[3].insert(1, "KC_NO")
-            rows[3][-1] = "KC_APP"
-            rows[4][-5]  = "OSL(SYM)"
-            rows[4][-4]  = "KC_LEFT"
-            rows[4][-3]  = "KC_DOWN"
-            rows[4][-2]  = "KC_UP"
-            rows[4][-1] = "KC_RIGHT"
-        elif layer['name'] == 'FN':
-            rows[3].insert(0, "KC_TRNS")
-            rows[3][-1] = "KC_NO"
-            rows[4][-4]  = "KC_MPRV"
-            rows[4][-3]  = "KC_VOLD"
-            rows[4][-2]  = "KC_VOLU"
-            rows[4][-1] = "KC_MNXT"
-        else:
-            rows[4].insert(0, "KC_NO")
-
+        rows[0].insert(-1, "KC_NO") # split backspace
+        rows[3].insert(1, "KC_NO") # extra left iso key
     path = qmk_path() / "keyboards" / "dz60" / "keymaps" / "mjroghelia" / "keymap.c"
     with open(path, 'w') as f:
         render(f, layers, 'LAYOUT')
@@ -78,17 +57,11 @@ def render_quefrency(layers):
     layers = copy.deepcopy(layers)
     for layer in layers:
         rows = layer['rows']
-        # unused positions
-        rows[0].insert(13, 'KC_NO')
-        rows[4].insert(5, 'KC_NO')
-        rows[4].insert(9, 'KC_NO')
-        # swap the poorly positioned fn :(
-        old = rows[4][3]
-        rows[4][3] = rows[4][4]
-        rows[4][4] = old
+        rows[0].insert(-1, "KC_NO") # split backspace
+        rows[4].insert(3, "KC_NO") # extra FN key
     path = qmk_path() / "keyboards" / "keebio" / "quefrency" / "keymaps" / "mjroghelia" / "keymap.c"
     with open(path, 'w') as f:
-        render(f, layers, 'LAYOUT_65')
+        render(f, layers, 'LAYOUT_60')
 
 # Wings
 def render_wings(layers):
