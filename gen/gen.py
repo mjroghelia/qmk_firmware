@@ -58,7 +58,7 @@ def render_quefrency(layers):
     for layer in layers:
         rows = layer['rows']
         rows[0].insert(-1, "KC_NO") # split backspace
-        rows[4].insert(3, "KC_NO") # extra FN key
+        rows[4].insert(5, "KC_NO") # extra left key
     path = qmk_path() / "keyboards" / "keebio" / "quefrency" / "keymaps" / "mjroghelia" / "keymap.c"
     with open(path, 'w') as f:
         render(f, layers, 'LAYOUT_60')
