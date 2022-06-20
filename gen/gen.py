@@ -46,8 +46,12 @@ def render_dz60(layers):
     layers = copy.deepcopy(layers)
     for layer in layers:
         rows = layer['rows']
-        rows[0].insert(-1, "KC_NO") # split backspace
-        rows[3].insert(1, "KC_NO") # extra left iso key
+        # split backspace
+        rows[0].insert(-1, "KC_NO")
+        #rows[0].insert(1, "KC_GRV")
+        # extra left iso key
+        rows[3].insert(1, "KC_NO")
+        #rows[3].insert(1, rows[3][0])
     path = qmk_path() / "keyboards" / "dz60" / "keymaps" / "mjroghelia" / "keymap.c"
     with open(path, 'w') as f:
         render(f, layers, 'LAYOUT')
