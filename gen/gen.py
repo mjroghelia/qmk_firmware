@@ -48,7 +48,7 @@ def render_dz60(layers):
         rows = layer['rows']
         # split backspace
         rows[0].insert(-1, "KC_NO")
-        #rows[0].insert(1, "KC_GRV")
+        #rows[0].append("KC_DEL")
         # extra left iso key
         rows[3].insert(1, "KC_NO")
         #rows[3].insert(1, rows[3][0])
