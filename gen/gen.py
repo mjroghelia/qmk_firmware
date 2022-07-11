@@ -42,7 +42,7 @@ def render(f, layers, macro):
 # 4: 0..10
 
 # DZ60
-def render_dz60(layers):
+def render_dz60(layers, v2=False):
     layers = copy.deepcopy(layers)
     for layer in layers:
         rows = layer['rows']
@@ -52,7 +52,10 @@ def render_dz60(layers):
         # extra left iso key
         rows[3].insert(1, "KC_NO")
         #rows[3].insert(1, rows[3][0])
-    path = qmk_path() / "keyboards" / "dz60" / "keymaps" / "mjroghelia" / "keymap.c"
+    model = "dz60"
+    if v2:
+        model += "_v2"
+    path = qmk_path() / "keyboards" / model / "keymaps" / "mjroghelia" / "keymap.c"
     with open(path, 'w') as f:
         render(f, layers, 'LAYOUT')
 
@@ -93,6 +96,9 @@ def main():
     if target == "dz60" or target == "all":
         render_dz60(layers)
     
+    if target == "dz60_v2" or target == "all":
+        render_dz60(layers, True)
+
     if target ==  "quefrency" or target == "all":
         render_quefrency(layers)
     
