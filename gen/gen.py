@@ -11,6 +11,23 @@ def gen_path():
 def qmk_path():
     return gen_path().parent
 
+def transform_to_60(layers):
+    layers = copy.deepcopy(layers)
+    for layer in layers:
+        rows = layer['rows']
+        del rows[0]
+        for i in range(3):
+            del rows[i][-1]
+        del rows[4][-4]
+        del rows[4][-4]
+        rows[4].insert(-1, rows[3][-2])
+        del rows[3][-2]
+        if layer['name'] == 'WIN':
+            rows[0][0] = "KC_GESC"
+        elif layer['name'] != 'MAC':
+            rows[0][0] = "CK_CLR"
+    return layers
+
 def render(f, layers, macro):
     print("#include QMK_KEYBOARD_H", file=f)
     print("#include \"mjroghelia.h\"\n", file=f)
@@ -57,15 +74,13 @@ def render_sinc(layers):
 
 # DZ60
 def render_dz60(layers, v2=False):
-    layers = copy.deepcopy(layers)
+    layers = transform_to_60(layers)
     for layer in layers:
         rows = layer['rows']
         # split backspace
         rows[0].insert(-1, "KC_NO")
-        #rows[0].append("KC_DEL")
         # extra left iso key
         rows[3].insert(1, "KC_NO")
-        #rows[3].insert(1, rows[3][0])
     model = "dz60"
     if v2:
         model += "_v2"
@@ -75,7 +90,7 @@ def render_dz60(layers, v2=False):
 
 # Quefrency
 def render_quefrency(layers):
-    layers = copy.deepcopy(layers)
+    layers = transform_to_60(layers)
     for layer in layers:
         rows = layer['rows']
         rows[0].insert(-1, "KC_NO") # split backspace
