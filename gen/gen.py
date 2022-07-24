@@ -34,6 +34,20 @@ def render(f, layers, macro):
         print("    ){}".format(i_delimiter), file=f)
     print("};", file=f)
 
+# Sinc
+def render_sinc(layers):
+    layers = copy.deepcopy(layers)
+    for layer in layers:
+        rows = layer['rows']
+        rows[1].insert(-2, "KC_NO") # split backspace
+        # extra bottom keys
+        rows[5].insert(4, "KC_NO")
+        rows[5].insert(6, "KC_NO")
+    path = qmk_path() / "keyboards" / "keebio" / "sinc" / "keymaps" / "mjroghelia" / "keymap.c"
+    with open(path, 'w') as f:
+        render(f, layers, 'LAYOUT_80')
+
+
 # Keymap template rows indices:
 # 0: 0..14
 # 1: 0..14
@@ -98,6 +112,9 @@ def main():
     
     if target == "dz60_v2" or target == "all":
         render_dz60(layers, True)
+
+    if target ==  "sinc" or target == "all":
+        render_sinc(layers)
 
     if target ==  "quefrency" or target == "all":
         render_quefrency(layers)

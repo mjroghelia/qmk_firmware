@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "keyboards/dz60_v2"
+		},
+		{
+			"path": "keyboards/keebio/sinc"
 		}
 	]
 }
