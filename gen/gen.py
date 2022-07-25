@@ -107,12 +107,13 @@ def render_quefrency(layers):
 
 # Wings
 def render_wings(layers):
-    layers = copy.deepcopy(layers)
+    layers = transform_to_65(layers)
     for layer in layers:
         rows = layer['rows']
         del rows[3][-1]
-        del rows[4][1]
+        del rows[4][8]
         del rows[4][6]
+        del rows[4][1]
     path = qmk_path() / "keyboards" / "ymdk" / "wingshs" / "keymaps" / "mjroghelia" / "keymap.c"
     with open(path, 'w') as f:
         render(f, layers, 'LAYOUT_all')
