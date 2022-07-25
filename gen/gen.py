@@ -11,21 +11,27 @@ def gen_path():
 def qmk_path():
     return gen_path().parent
 
-def transform_to_60(layers):
+def transform_to_65(layers):
     layers = copy.deepcopy(layers)
     for layer in layers:
         rows = layer['rows']
         del rows[0]
+        if layer['name'] == 'WIN':
+            rows[0][0] = "KC_GESC"
+        elif layer['name'] != 'MAC':
+            rows[0][0] = "CK_CLR"
+    return layers
+
+def transform_to_60(layers):
+    layers = transform_to_65(layers)
+    for layer in layers:
+        rows = layer['rows']
         for i in range(3):
             del rows[i][-1]
         del rows[4][-4]
         del rows[4][-4]
         rows[4].insert(-1, rows[3][-2])
         del rows[3][-2]
-        if layer['name'] == 'WIN':
-            rows[0][0] = "KC_GESC"
-        elif layer['name'] != 'MAC':
-            rows[0][0] = "CK_CLR"
     return layers
 
 def render(f, layers, macro):
