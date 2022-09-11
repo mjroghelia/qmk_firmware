@@ -29,7 +29,10 @@ enum custom_keycodes {
 	CK_APP3,
 	CK_APP4,
 	CK_APP5,
-	CK_APP6
+	CK_APP6,
+	CK_APP7,
+	CK_APP8,
+	CK_APP9
 };
 
 enum layers {

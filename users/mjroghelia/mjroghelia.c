@@ -4,7 +4,7 @@ bool in_app_shortcut = false;
 
 // Select the app in the dock/taskbar by position
 bool process_app_shortcut(int position, keyrecord_t *record) {
-	if (position < 1 || position > 6) {
+	if (position < 1 || position > 9) {
 		return true;
 	}
 
@@ -177,6 +177,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case CK_APP6:
 		return process_app_shortcut(6, record);
+
+    case CK_APP7:
+		return process_app_shortcut(7, record);
+
+    case CK_APP8:
+		return process_app_shortcut(8, record);
+
+    case CK_APP9:
+		return process_app_shortcut(9, record);
 
 	case CK_WIN:
 		if (record->event.pressed) {

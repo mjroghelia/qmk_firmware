@@ -8,7 +8,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,           KC_Q,             KC_W,             KC_E,             KC_R,             KC_T,             KC_Y,             KC_U,             KC_I,             KC_O,             KC_P,             KC_LBRC,          KC_RBRC,          KC_BSLS,          KC_PGUP,
         LT(FN, KC_ESC),   KC_A,             KC_S,             KC_D,             KC_F,             KC_G,             KC_H,             KC_J,             KC_K,             KC_L,             KC_SCLN,          KC_QUOT,          KC_ENT,           KC_PGDN,
         OSM(MOD_LSFT),    KC_Z,             KC_X,             KC_C,             KC_V,             KC_B,             KC_N,             KC_M,             KC_COMM,          KC_DOT,           KC_SLSH,          OSM(MOD_RSFT),    KC_UP,
-        KC_LCTL,          KC_LALT,          KC_LCTL,          OSL(FN),          LT(APP, KC_SPC),  KC_RGUI,          KC_LEFT,          KC_DOWN,          KC_RGHT
+        KC_LCTL,          KC_LALT,          KC_LCTL,          MO(FN),           LT(APP, KC_SPC),  KC_RGUI,          KC_LEFT,          KC_DOWN,          KC_RGHT
     ),
 
     [MAC] = LAYOUT_all(
@@ -22,8 +22,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [FN] = LAYOUT_all(
         CK_CLR,           KC_F1,            KC_F2,            KC_F3,            KC_F4,            KC_F5,            KC_F6,            KC_F7,            KC_F8,            KC_F9,            KC_F10,           KC_F11,           KC_F12,           KC_DEL,           KC_NO,
         KC_NO,            CK_QUIT,          KC_NO,            CK_EOL,           LCTL(KC_R),       LCTL(KC_GRV),     KC_NO,            KC_NO,            KC_PGDN,          KC_PGUP,          KC_UP,            KC_NO,            KC_NO,            KC_NO,            KC_NO,
-        KC_TRNS,          CK_SOL,           CK_SAVE,          KC_DEL,           KC_RIGHT,         KC_NO,            KC_LEFT,          KC_DOWN,          KC_UP,            KC_RGHT,          KC_ENT,           KC_GRV,           LCTL(KC_ENT),     KC_NO,
-        KC_NO,            KC_NO,            CK_CUT,           CK_COPY,          CK_PASTE,         KC_LEFT,          KC_DOWN,          KC_MUTE,          CK_BWORD,         CK_FWORD,         KC_NO,            KC_MPLY,          KC_VOLU,
+        KC_TRNS,          CK_SOL,           CK_SAVE,          KC_DEL,           KC_RIGHT,         KC_NO,            KC_LEFT,          KC_DOWN,          KC_UP,            KC_RGHT,          KC_ENT,           KC_GRV,           KC_MPLY,          KC_NO,
+        KC_NO,            KC_NO,            CK_CUT,           CK_COPY,          CK_PASTE,         KC_LEFT,          KC_DOWN,          KC_MUTE,          CK_BWORD,         CK_FWORD,         KC_NO,            KC_NO,            KC_VOLU,
         MO(ADMIN),        KC_NO,            KC_NO,            KC_TRNS,          KC_BSPC,          KC_NO,            KC_MPRV,          KC_VOLD,          KC_MNXT
     ),
 
@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         CK_CLR,           KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,
         KC_NO,            KC_NO,            CK_APP1,          CK_APP2,          CK_APP3,          KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,
         KC_NO,            CK_NOTN,          CK_APP4,          CK_APP5,          CK_APP6,          KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,
-        KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,
+        KC_NO,            KC_NO,            CK_APP7,          CK_APP8,          CK_APP9,          KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,
         KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO
     ),
 
