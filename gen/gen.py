@@ -94,6 +94,23 @@ def render_dz60(layers, v2=False):
     with open(path, 'w') as f:
         render(f, layers, 'LAYOUT')
 
+# YD60MQ
+def render_yd60mq(layers):
+    layers = transform_to_60(layers)
+    for layer in layers:
+        rows = layer['rows']
+        # split backspace
+        rows[0].insert(-1, "KC_DEL")
+        # extra right iso key
+        rows[2].insert(-1, "KC_NO")
+        # extra left iso key
+        rows[3].insert(1, "KC_NO")
+        # up arrow when using 2u left shift
+        rows[3].insert(-2, "KC_NO")
+    path = qmk_path() / "keyboards" / "ymdk" / "yd60mq" / "keymaps" / "mjroghelia" / "keymap.c"
+    with open(path, 'w') as f:
+        render(f, layers, 'LAYOUT_all')
+
 # Quefrency
 def render_quefrency(layers):
     layers = transform_to_60(layers)
@@ -141,6 +158,9 @@ def main():
     if target ==  "quefrency" or target == "all":
         render_quefrency(layers)
     
+    if target == "yd60mq" or target == "all":
+        render_yd60mq(layers)
+
     if target == "wings" or target == "all":
         render_wings(layers)
 

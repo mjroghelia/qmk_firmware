@@ -20,6 +20,9 @@
 		},
 		{
 			"path": "keyboards/keebio/sinc"
+		},
+		{
+			"path": "keyboards/ymdk/yd60mq"
 		}
 	]
 }
