@@ -37,7 +37,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
+  
+	switch (keycode) {
 
 	case CK_CLR:
 		if (record->event.pressed) {
@@ -160,31 +161,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		}
 		return false;
 
-    case CK_APP1:
+  case CK_APP1:
 		return process_app_shortcut(1, record);
 
-    case CK_APP2:
+  case CK_APP2:
 		return process_app_shortcut(2, record);
 
-    case CK_APP3:
+  case CK_APP3:
 		return process_app_shortcut(3, record);
 
-    case CK_APP4:
+  case CK_APP4:
 		return process_app_shortcut(4, record);
 
-    case CK_APP5:
+  case CK_APP5:
 		return process_app_shortcut(5, record);
 
-    case CK_APP6:
+  case CK_APP6:
 		return process_app_shortcut(6, record);
 
-    case CK_APP7:
+  case CK_APP7:
 		return process_app_shortcut(7, record);
 
-    case CK_APP8:
+  case CK_APP8:
 		return process_app_shortcut(8, record);
 
-    case CK_APP9:
+  case CK_APP9:
 		return process_app_shortcut(9, record);
 
 	case CK_WIN:
@@ -192,14 +193,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			eeconfig_update_user(WINDOWS_MODE);
 			layer_move(WIN);
 		}
-        return false;
+    return false;
 
 	case CK_MAC:
 		if (record->event.pressed) {
 			eeconfig_update_user(MAC_MODE);
 			layer_move(MAC);
 		}
-        return false;
+    return false;
 
 	case CK_NOTN:
 		if (record->event.pressed) {
@@ -212,9 +213,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		}
 		return false;
 
+	case CK_TAB:
+		if (record->event.pressed) {
+			if (IS_LAYER_ON(WIN)) {
+				SEND_STRING(SS_LCTL(SS_LALT(SS_TAP(X_TAB))));
+			}
+		}
+		return false;
+
 	default:
 		return true;
-    }
+  }
 }
 
 void keyboard_post_init_user(void) {

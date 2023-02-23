@@ -24,6 +24,7 @@ enum custom_keycodes {
 	CK_COPY,
 	CK_PASTE,
 	CK_NOTN,
+	CK_TAB,
 	CK_APP1,
 	CK_APP2,
 	CK_APP3,
