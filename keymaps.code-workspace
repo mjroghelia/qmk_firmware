@@ -23,6 +23,9 @@
 		},
 		{
 			"path": "keyboards/ymdk/yd60mq"
+		},
+		{
+			"path": "keyboards/keychron/q11"
 		}
 	]
 }

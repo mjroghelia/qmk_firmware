@@ -57,6 +57,40 @@ def render(f, layers, macro):
         print("    ){}".format(i_delimiter), file=f)
     print("};", file=f)
 
+# Q11
+def render_q11(layers):
+    # remove right FN toogle, add right knob, left knob and macros
+    layers = copy.deepcopy(layers)
+    for layer in layers:
+        rows = layer['rows']
+        # left and right knobs
+        if layer['name'] == 'MAC' or layer['name'] == 'WIN':
+            rows[0].insert(0, "KC_MUTE")
+            rows[0].insert(-1, "KC_MUTE")
+        else:
+            rows[0].insert(0, "KC_NO")
+            rows[0].insert(-1, "KC_NO")
+        rows[1].insert(0, "KC_NO") # macro
+        rows[2].insert(0, "KC_NO") # macro
+        rows[3].insert(0, "KC_NO") # macro
+        rows[4].insert(0, "KC_NO") # macro
+        rows[5].insert(0, "KC_NO") # macro
+        del rows[4][-1] # right FN key
+    path = qmk_path() / "keyboards" / "keychron" / "q11" / "ansi_encoder" / "keymaps" / "mjroghelia" / "keymap.c"
+    with open(path, 'w') as f:
+        render(f, layers, 'LAYOUT_ansi_91')
+        print("#if defined(ENCODER_MAP_ENABLE)", file=f)
+        print("const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {", file=f)
+        print("    [MAC] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },", file=f)
+        print("    [EXTRA] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },", file=f)
+        print("    [WIN] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },", file=f)
+        print("    [NAV] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },", file=f)
+        print("    [FN] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },", file=f)
+        print("    [ADMIN] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },", file=f)
+        print("    [SYM] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },", file=f)
+        print("};", file=f)
+        print("#endif // ENCODER_MAP_ENABLE", file=f)
+
 # Sinc
 def render_sinc(layers):
     layers = copy.deepcopy(layers)
@@ -141,7 +175,7 @@ def main():
         keymap = json.load(keymap_file)
         layers = keymap['layers']
     
-    target = "all"
+    target = "q11"
 
     if (len(sys.argv) >= 2):
         target = sys.argv[1]
@@ -158,6 +192,9 @@ def main():
     if target ==  "quefrency" or target == "all":
         render_quefrency(layers)
     
+    if target ==  "q11" or target == "all":
+        render_q11(layers)
+
     if target == "yd60mq" or target == "all":
         render_yd60mq(layers)
 
