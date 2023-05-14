@@ -17,7 +17,7 @@ def transform_to_65(layers):
         rows = layer['rows']
         del rows[0]
         if layer['name'] == 'WIN':
-            rows[0][0] = "KC_GESC"
+            rows[0][0] = "QK_GESC"
         elif layer['name'] != 'MAC':
             rows[0][0] = "CK_CLR"
     return layers
