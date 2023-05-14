@@ -29,7 +29,7 @@ def transform_to_60(layers):
         for i in range(3):
             del rows[i][-1]
         del rows[4][-4]
-        del rows[4][-4]
+        del rows[4][-5]
         rows[4].insert(-1, rows[3][-2])
         del rows[3][-2]
     return layers
