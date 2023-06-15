@@ -11,6 +11,20 @@ def gen_path():
 def qmk_path():
     return gen_path().parent
 
+def transform_nav(layers):
+    layers = copy.deepcopy(layers)
+    for layer in layers:
+        if layer['name'] == 'NAV':
+            nav_rows = layer['rows']
+        elif layer['name'] == 'FN':
+            fn_rows = layer['rows']
+    for i in range(len(nav_rows)):
+        row = nav_rows[i]
+        for j in range(len(row)):
+            if row[j] == 'KC_TRNS':
+                row[j] = fn_rows[i][j]
+    return layers
+
 def transform_to_65(layers):
     layers = copy.deepcopy(layers)
     for layer in layers:
@@ -63,8 +77,12 @@ def render_q11(layers):
     layers = copy.deepcopy(layers)
     for layer in layers:
         rows = layer['rows']
-        # left and right knobs
         if layer['name'] == 'MAC' or layer['name'] == 'WIN':
+            # swap ctrl/gui with fn
+            tmp = rows[5][3]
+            rows[5][3] = rows[5][4]
+            rows[5][4] = tmp
+            # left and right knobs
             rows[0].insert(0, "KC_MUTE")
             rows[0].insert(-1, "KC_MUTE")
         else:
@@ -173,8 +191,8 @@ def render_wings(layers):
 def main():
     with open(gen_path() / 'keymap.json') as keymap_file:
         keymap = json.load(keymap_file)
-        layers = keymap['layers']
-    
+        layers = transform_nav(keymap['layers'])
+        
     target = "q11"
 
     if (len(sys.argv) >= 2):
