@@ -79,9 +79,9 @@ def render_q11(layers):
         rows = layer['rows']
         if layer['name'] == 'MAC' or layer['name'] == 'WIN':
             # swap ctrl/gui with fn
-            tmp = rows[5][3]
-            rows[5][3] = rows[5][4]
-            rows[5][4] = tmp
+            #tmp = rows[5][3]
+            #rows[5][3] = rows[5][4]
+            #rows[5][4] = tmp
             # left and right knobs
             rows[0].insert(0, "KC_MUTE")
             rows[0].insert(-1, "KC_MUTE")
