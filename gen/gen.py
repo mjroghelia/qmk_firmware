@@ -30,10 +30,10 @@ def transform_to_65(layers):
     for layer in layers:
         rows = layer['rows']
         del rows[0]
-        if layer['name'] == 'MAC':
-            rows[0][0] = "QK_GESC"
-        elif layer['name'] != 'WIN':
-            rows[0][0] = "CK_CLR"
+        # if layer['name'] == 'MAC':
+        #     rows[0][0] = "QK_GESC"
+        # elif layer['name'] != 'WIN':
+        #     rows[0][0] = "CK_CLR"
     return layers
 
 def transform_to_60(layers):
