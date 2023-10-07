@@ -124,7 +124,7 @@ def render_q11(layers):
         del rows[4][-1] # right FN key
     path = qmk_path() / "keyboards" / "keychron" / "q11" / "ansi_encoder" / "keymaps" / "mjroghelia" / "keymap.c"
     with open(path, 'w') as f:
-        render(f, layers, 'LAYOUT_ansi_91')
+        render(f, layers, 'LAYOUT_91_ansi')
         print("#if defined(ENCODER_MAP_ENABLE)", file=f)
         print("const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {", file=f)
         print("    [MAC] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },", file=f)
