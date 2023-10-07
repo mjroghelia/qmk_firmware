@@ -77,11 +77,6 @@ def transform_to_60(layers):
     return layers
 
 def render(f, layers, macro):
-    print("enum layers {", file=f)
-    for layer in layers:
-        name = layer['name']
-        print("    {},".format(layer['name']), file=f)
-    print("};\n", file=f)
     print("#include QMK_KEYBOARD_H", file=f)
     print("#include \"mjroghelia.h\"\n", file=f)
     print("const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {\n", file=f)

@@ -36,4 +36,19 @@ enum custom_keycodes {
 	CK_APP9
 };
 
+enum layers {
+  #ifdef MJR_HARDWARE_LAYER_TOGGLE
+		MAC,
+		EXTRA,
+		WIN,
+  #else
+		WIN,
+		MAC,
+  #endif
+	NAV,
+	FN,
+	ADMIN,
+	SYM
+};
+
 #endif
