@@ -37,9 +37,14 @@ enum custom_keycodes {
 };
 
 enum layers {
-	MAC,
-	EXTRA,
-	WIN,
+  #ifdef MJR_HARDWARE_LAYER_TOGGLE
+		MAC,
+		EXTRA,
+		WIN,
+  #else
+		WIN,
+		MAC,
+  #endif
 	NAV,
 	FN,
 	ADMIN,
