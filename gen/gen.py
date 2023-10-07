@@ -11,6 +11,7 @@ def gen_path():
 def qmk_path():
     return gen_path().parent
 
+# replace all the KC_TRNS in the nav layer with the corresponding FN key
 def transform_nav(layers):
     layers = copy.deepcopy(layers)
     for layer in layers:
@@ -23,6 +24,33 @@ def transform_nav(layers):
         for j in range(len(row)):
             if row[j] == 'KC_TRNS':
                 row[j] = fn_rows[i][j]
+    return layers
+
+# generate a MAC layer based on the WIN layer
+def transform_mac(layers):
+    layers = copy.deepcopy(layers)
+    for layer in layers:
+        if layer['name'] == 'WIN':
+            mac_rows = copy.deepcopy(layer['rows'])
+    mac_rows[5][3] = 'KC_LGUI' # replace the thumb CTL with GUI
+    mac_layer = dict(name='MAC', rows=mac_rows)
+    layers.insert(1, mac_layer)
+    return layers
+
+# re-arrange layers to match the expectations of the hardware layer toggle
+def tranform_toggle(layers):
+    layers = copy.deepcopy(layers)
+    win_layer = layers[0]
+    layers[0] = layers[1] # switch to put MAC first
+    layers[1] = win_layer
+    extra_layer = copy.deepcopy(win_layer)
+    extra_layer['name'] = 'EXTRA'
+    rows = extra_layer['rows']
+    for i in range(len(rows)):
+        row = rows[i]
+        for j in range(len(row)):
+            row[j] = 'KC_TRNS'
+    layers.insert(1, extra_layer)
     return layers
 
 def transform_to_65(layers):
@@ -49,6 +77,11 @@ def transform_to_60(layers):
     return layers
 
 def render(f, layers, macro):
+    print("enum layers {", file=f)
+    for layer in layers:
+        name = layer['name']
+        print("    {},".format(layer['name']), file=f)
+    print("};\n", file=f)
     print("#include QMK_KEYBOARD_H", file=f)
     print("#include \"mjroghelia.h\"\n", file=f)
     print("const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {\n", file=f)
@@ -73,8 +106,8 @@ def render(f, layers, macro):
 
 # Q11
 def render_q11(layers):
+    layers = tranform_toggle(layers) # adjust for the expectations of the hardware toggle
     # remove right FN toogle, add right knob, left knob and macros
-    layers = copy.deepcopy(layers)
     for layer in layers:
         rows = layer['rows']
         if layer['name'] == 'MAC' or layer['name'] == 'WIN':
@@ -192,6 +225,7 @@ def main():
     with open(gen_path() / 'keymap.json') as keymap_file:
         keymap = json.load(keymap_file)
         layers = transform_nav(keymap['layers'])
+        layers = transform_mac(layers)
         
     target = "q11"
 

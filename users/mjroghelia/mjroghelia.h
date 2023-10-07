@@ -36,14 +36,4 @@ enum custom_keycodes {
 	CK_APP9
 };
 
-enum layers {
-	MAC,
-	EXTRA,
-	WIN,
-	NAV,
-	FN,
-	ADMIN,
-	SYM
-};
-
 #endif
