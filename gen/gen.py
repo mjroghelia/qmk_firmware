@@ -222,7 +222,7 @@ def main():
         layers = transform_nav(keymap['layers'])
         layers = transform_mac(layers)
         
-    target = "q11"
+    target = "dz60"
 
     if (len(sys.argv) >= 2):
         target = sys.argv[1]
