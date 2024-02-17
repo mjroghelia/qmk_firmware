@@ -174,6 +174,30 @@ def render_dz60(layers, v2=False):
     with open(path, 'w') as f:
         render(f, layers, 'LAYOUT')
 
+# Iris
+def render_iris(layers):
+    layers = transform_to_60(layers)
+    for layer in layers:
+        rows = layer['rows']
+        del rows[0][11]
+        del rows[0][11]
+        del rows[1][11]
+        del rows[1][11]
+        del rows[2][12]
+        del rows[3][12]
+        rows[3].insert(6, "KC_NO") # upper thumb buttons
+        rows[3].insert(6, "KC_NO")
+        del rows[4][0]
+        del rows[4][1]
+        rows[4][4] = rows[4][3] # extra space bar
+        rows[4][5] = "KC_NO"
+        del rows[4][-1]
+        del rows[4][-1]
+        del rows[4][-1]
+
+    path = qmk_path() / "keyboards" / "keebio" / "iris" / "keymaps" / "mjroghelia" / "keymap.c"
+    with open(path, 'w') as f:
+        render(f, layers, 'LAYOUT')
 # YD60MQ
 def render_yd60mq(layers):
     layers = transform_to_60(layers)
@@ -232,7 +256,10 @@ def main():
     
     if target == "dz60_v2" or target == "all":
         render_dz60(layers, True)
-
+    
+    if target == "iris" or target == "all":
+        render_iris(layers)
+    
     if target ==  "sinc" or target == "all":
         render_sinc(layers)
 

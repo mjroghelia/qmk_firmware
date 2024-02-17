@@ -26,6 +26,9 @@
 		},
 		{
 			"path": "keyboards/keychron/q11"
+		},
+		{
+			"path": "keyboards/keebio/iris"
 		}
 	]
 }
