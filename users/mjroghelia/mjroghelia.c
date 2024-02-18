@@ -227,7 +227,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void keyboard_post_init_user(void) {
-  #ifdef MJR_SINC
+  #ifdef MJR_RBG_OFF
 		rgblight_disable();
   #endif
 

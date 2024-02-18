@@ -58,10 +58,11 @@ def transform_to_65(layers):
     for layer in layers:
         rows = layer['rows']
         del rows[0]
-        if layer['name'] == 'MAC' or layer['name'] == 'WIN':
-            rows[0][0] = "KC_ESC"
-        else:
-            rows[0][0] = "CK_CLR"
+        # Uncomment to replace GRV with ESC on the top left
+        # if layer['name'] == 'MAC' or layer['name'] == 'WIN':
+        #     rows[0][0] = "KC_ESC"
+        # else:
+        #     rows[0][0] = "CK_CLR"
     return layers
 
 def transform_to_60(layers):
@@ -71,7 +72,7 @@ def transform_to_60(layers):
         for i in range(3):
             del rows[i][-1]
         del rows[4][-4]
-        del rows[4][-5]
+        del rows[4][-4]
         rows[4].insert(-1, rows[3][-2])
         del rows[3][-2]
     return layers
@@ -150,14 +151,6 @@ def render_sinc(layers):
     with open(path, 'w') as f:
         render(f, layers, 'LAYOUT_80')
 
-
-# Keymap template rows indices:
-# 0: 0..14
-# 1: 0..14
-# 2: 0..13
-# 3: 0..13
-# 4: 0..10
-
 # DZ60
 def render_dz60(layers, v2=False):
     layers = transform_to_60(layers)
@@ -185,12 +178,21 @@ def render_iris(layers):
         del rows[1][11]
         del rows[2][12]
         del rows[3][12]
-        rows[3].insert(6, "KC_NO") # upper thumb buttons
-        rows[3].insert(6, "KC_NO")
+        # upper thumb buttons
+        if layer['name'] == 'MAC' or layer['name'] == 'WIN':
+            rows[3].insert(6, "KC_LCTL")
+            rows[3].insert(6, "KC_RALT")
+        elif layer['name'] == 'FN':
+            rows[3].insert(6, "KC_NO")
+            rows[3].insert(6, "MO(ADMIN)")
+        else:
+            rows[3].insert(6, "KC_NO")
+            rows[3].insert(6, "KC_NO") 
         del rows[4][0]
         del rows[4][1]
         rows[4][4] = rows[4][3] # extra space bar
-        rows[4][5] = "KC_NO"
+        if layer['name'] == 'MAC' or layer['name'] == 'WIN':
+            rows[4][5] = "MO(NUM)"
         del rows[4][-1]
         del rows[4][-1]
         del rows[4][-1]

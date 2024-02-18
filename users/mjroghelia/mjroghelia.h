@@ -48,7 +48,8 @@ enum layers {
 	NAV,
 	FN,
 	ADMIN,
-	SYM
+	SYM,
+	NUM
 };
 
 #endif
