@@ -180,19 +180,24 @@ def render_iris(layers):
         del rows[3][12]
         # upper thumb buttons
         if layer['name'] == 'MAC' or layer['name'] == 'WIN':
-            rows[3].insert(6, "KC_LCTL")
             rows[3].insert(6, "KC_RALT")
+            rows[3].insert(6, "KC_LALT")
         elif layer['name'] == 'FN':
             rows[3].insert(6, "KC_NO")
-            rows[3].insert(6, "MO(ADMIN)")
+            rows[3].insert(6, "MO(ADMIN)") # left upper thumb button
         else:
             rows[3].insert(6, "KC_NO")
             rows[3].insert(6, "KC_NO") 
         del rows[4][0]
         del rows[4][1]
-        rows[4][4] = rows[4][3] # extra space bar
         if layer['name'] == 'MAC' or layer['name'] == 'WIN':
-            rows[4][5] = "MO(NUM)"
+            if layer['name'] == 'MAC':
+                rows[4][0] = "KC_LCTL"
+            rows[4][4] = "LT(NUM, KC_ENT)"
+            rows[4][5] = "KC_RGUI"
+        else:
+            rows[4][4] = "KC_NO"
+            rows[4][5] = "KC_NO"
         del rows[4][-1]
         del rows[4][-1]
         del rows[4][-1]
