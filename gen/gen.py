@@ -71,7 +71,7 @@ def transform_to_60(layers):
         rows = layer['rows']
         for i in range(3):
             del rows[i][-1]
-        del rows[4][-4]
+        del rows[4][-6]
         del rows[4][-4]
         rows[4].insert(-1, rows[3][-2])
         del rows[3][-2]
@@ -146,7 +146,7 @@ def render_sinc(layers):
         rows[1].insert(-2, "KC_NO") # split backspace
         # extra bottom keys
         rows[5].insert(4, "KC_NO")
-        rows[5].insert(6, "KC_NO")
+        rows[5].insert(6, rows[5][6])
     path = qmk_path() / "keyboards" / "keebio" / "sinc" / "keymaps" / "mjroghelia" / "keymap.c"
     with open(path, 'w') as f:
         render(f, layers, 'LAYOUT_80')
