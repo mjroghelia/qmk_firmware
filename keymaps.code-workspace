@@ -29,6 +29,9 @@
 		},
 		{
 			"path": "keyboards/keebio/iris"
+		},
+		{
+			"path": "keyboards/1upkeyboards/pi60"
 		}
 	]
 }

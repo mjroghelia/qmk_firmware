@@ -138,6 +138,21 @@ def render_q11(layers):
         print("};", file=f)
         print("#endif // ENCODER_MAP_ENABLE", file=f)
 
+# pi60
+def render_pi60(layers):
+    layers = transform_to_60(layers)
+    for layer in layers:
+        rows = layer['rows']
+        # split backspace
+        rows[0].append("KC_DEL")
+        # extra right iso key
+        rows[2].insert(-1, "KC_NO")
+        # up arrow when using 2u left shift
+        rows[3].insert(-2, "KC_NO")
+    path = qmk_path() / "keyboards" / "1upkeyboards" / "pi60" / "keymaps" / "mjroghelia" / "keymap.c"
+    with open(path, 'w') as f:
+        render(f, layers, 'LAYOUT_all')
+
 # Sinc
 def render_sinc(layers):
     layers = copy.deepcopy(layers)
@@ -254,7 +269,7 @@ def main():
         layers = transform_nav(keymap['layers'])
         layers = transform_mac(layers)
         
-    target = "dz60"
+    target = "pi60"
 
     if (len(sys.argv) >= 2):
         target = sys.argv[1]
@@ -267,6 +282,9 @@ def main():
     
     if target == "iris" or target == "all":
         render_iris(layers)
+
+    if target == "pi60" or target == "all":
+        render_pi60(layers)
     
     if target ==  "sinc" or target == "all":
         render_sinc(layers)
