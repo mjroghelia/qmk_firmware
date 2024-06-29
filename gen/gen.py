@@ -38,7 +38,7 @@ def transform_mac(layers):
     return layers
 
 # re-arrange layers to match the expectations of the hardware layer toggle
-def tranform_toggle(layers):
+def transform_toggle(layers):
     layers = copy.deepcopy(layers)
     win_layer = layers[0]
     layers[0] = layers[1] # switch to put MAC first
@@ -102,7 +102,7 @@ def render(f, layers, macro):
 
 # Q11
 def render_q11(layers):
-    layers = tranform_toggle(layers) # adjust for the expectations of the hardware toggle
+    layers = transform_toggle(layers) # adjust for the expectations of the hardware toggle
     # remove right FN toogle, add right knob, left knob and macros
     for layer in layers:
         rows = layer['rows']
