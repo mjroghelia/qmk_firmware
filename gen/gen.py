@@ -147,8 +147,8 @@ def render_pi60(layers):
         rows[0].append("KC_DEL")
         # extra right iso key
         rows[2].insert(-1, "KC_NO")
-        # up arrow when using 2u left shift
-        rows[3].insert(-2, "KC_NO")
+        # extra key when using 2u left shift
+        rows[3].insert(1, "KC_NO")
     path = qmk_path() / "keyboards" / "1upkeyboards" / "pi60" / "keymaps" / "mjroghelia" / "keymap.c"
     with open(path, 'w') as f:
         render(f, layers, 'LAYOUT_all')
