@@ -33,7 +33,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 		unregister_code(KC_LGUI);
 		in_app_shortcut = false;
 	}
-  	return state;
+
+  return state;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -223,6 +224,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 	default:
 		return true;
+  }
+}
+
+void leader_start_user(void) {
+    // Do something when the leader key is pressed
+}
+
+void leader_end_user(void) {
+  if (leader_sequence_two_keys(KC_K, KC_Q)) {
+		SEND_STRING("let startDate = ago(1d); // datetime('2025-01-01 00:00:00');\n");
+		SEND_STRING("let endDate = now();\n");
+		SEND_STRING("\n");
+    SEND_STRING("| where timestamp between (startDate..endDate)\n");
+		SEND_STRING(SS_TAP(X_UP));
+		SEND_STRING(SS_TAP(X_UP));
   }
 }
 
