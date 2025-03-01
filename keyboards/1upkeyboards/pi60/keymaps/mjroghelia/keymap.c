@@ -6,17 +6,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [WIN] = LAYOUT_all(
         KC_GRV,           KC_1,             KC_2,             KC_3,             KC_4,             KC_5,             KC_6,             KC_7,             KC_8,             KC_9,             KC_0,             KC_MINS,          KC_EQL,           KC_BSPC,          KC_DEL,
         KC_TAB,           KC_Q,             KC_W,             KC_E,             KC_R,             KC_T,             KC_Y,             KC_U,             KC_I,             KC_O,             KC_P,             KC_LBRC,          KC_RBRC,          KC_BSLS,
-        LT(NAV, KC_ESC),  KC_A,             KC_S,             KC_D,             KC_F,             KC_G,             KC_H,             KC_J,             KC_K,             KC_L,             KC_SCLN,          KC_QUOT,          KC_NO,            KC_ENT,
+        LT(NAV, KC_ESC),  KC_A,             KC_S,             KC_D,             KC_F,             KC_G,             KC_H,             KC_J,             KC_K,             LT(SYM, KC_L),    KC_SCLN,          KC_QUOT,          KC_NO,            KC_ENT,
         OSM(MOD_LSFT),    KC_NO,            KC_Z,             KC_X,             KC_C,             KC_V,             KC_B,             KC_N,             KC_M,             KC_COMM,          KC_DOT,           KC_SLSH,          OSM(MOD_RSFT),    MO(ADMIN),
-        KC_LCTL,          KC_LGUI,          KC_LALT,          KC_LCTL,          MO(FN),           LT(SYM, KC_SPC),  KC_RGUI,          KC_LEFT,          KC_DOWN,          KC_UP,            KC_RGHT
+        KC_LCTL,          KC_LGUI,          KC_LALT,          KC_LCTL,          MO(FN),           LT(SYM, KC_SPC),  OSL(SYM),         KC_LEFT,          KC_DOWN,          KC_UP,            KC_RGHT
     ),
 
     [MAC] = LAYOUT_all(
         KC_GRV,           KC_1,             KC_2,             KC_3,             KC_4,             KC_5,             KC_6,             KC_7,             KC_8,             KC_9,             KC_0,             KC_MINS,          KC_EQL,           KC_BSPC,          KC_DEL,
         KC_TAB,           KC_Q,             KC_W,             KC_E,             KC_R,             KC_T,             KC_Y,             KC_U,             KC_I,             KC_O,             KC_P,             KC_LBRC,          KC_RBRC,          KC_BSLS,
-        LT(NAV, KC_ESC),  KC_A,             KC_S,             KC_D,             KC_F,             KC_G,             KC_H,             KC_J,             KC_K,             KC_L,             KC_SCLN,          KC_QUOT,          KC_NO,            KC_ENT,
+        LT(NAV, KC_ESC),  KC_A,             KC_S,             KC_D,             KC_F,             KC_G,             KC_H,             KC_J,             KC_K,             LT(SYM, KC_L),    KC_SCLN,          KC_QUOT,          KC_NO,            KC_ENT,
         OSM(MOD_LSFT),    KC_NO,            KC_Z,             KC_X,             KC_C,             KC_V,             KC_B,             KC_N,             KC_M,             KC_COMM,          KC_DOT,           KC_SLSH,          OSM(MOD_RSFT),    MO(ADMIN),
-        KC_LCTL,          KC_LGUI,          KC_LALT,          KC_LGUI,          MO(FN),           LT(SYM, KC_SPC),  KC_RGUI,          KC_LEFT,          KC_DOWN,          KC_UP,            KC_RGHT
+        KC_LCTL,          KC_LGUI,          KC_LALT,          KC_LGUI,          MO(FN),           LT(SYM, KC_SPC),  OSL(SYM),         KC_LEFT,          KC_DOWN,          KC_UP,            KC_RGHT
     ),
 
     [FN] = LAYOUT_all(
@@ -37,9 +37,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [SYM] = LAYOUT_all(
         KC_TILD,          KC_EXLM,          KC_AT,            KC_HASH,          KC_DLR,           KC_PERC,          KC_CIRC,          KC_AMPR,          KC_ASTR,          KC_LPRN,          KC_RPRN,          KC_UNDS,          KC_PLUS,          KC_BSPC,          KC_DEL,
-        KC_NO,            KC_TILD,          KC_PLUS,          KC_MINS,          KC_PIPE,          KC_UNDS,          KC_NO,            KC_ASTR,          KC_LPRN,          KC_RPRN,          KC_DQUO,          KC_NO,            KC_NO,            KC_NO,
-        CK_CLR,           KC_EXLM,          KC_LT,            KC_EQL,           KC_GT,            KC_LCBR,          KC_RCBR,          KC_NO,            KC_NO,            KC_DQUO,          KC_TRNS,          KC_DQUO,          KC_NO,            KC_ENT,
-        KC_LSFT,          KC_NO,            KC_BSLS,          KC_PERC,          KC_ASTR,          KC_NO,            KC_LBRC,          KC_RBRC,          KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_RSFT,          KC_NO,
+        KC_NO,            KC_TILD,          KC_ASTR,          KC_MINS,          KC_UNDS,          KC_PIPE,          KC_NO,            KC_ASTR,          KC_LPRN,          KC_RPRN,          KC_NO,            KC_NO,            KC_NO,            KC_NO,
+        CK_CLR,           KC_EXLM,          KC_LT,            KC_EQL,           KC_GT,            KC_LCBR,          KC_RCBR,          KC_QUOT,          KC_DQUO,          KC_NO,            KC_TRNS,          KC_DQUO,          KC_NO,            KC_ENT,
+        KC_LSFT,          KC_NO,            KC_BSLS,          KC_PERC,          KC_PLUS,          KC_NO,            KC_LBRC,          KC_RBRC,          KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_RSFT,          KC_NO,
         KC_NO,            KC_NO,            KC_NO,            KC_SPC,           KC_SPC,           KC_SPC,           KC_NO,            KC_NO,            KC_NO,            KC_NO,            KC_NO
     ),
 
